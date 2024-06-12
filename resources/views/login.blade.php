@@ -17,14 +17,15 @@
             <div class="card-header">
                 <h3 class="card-title">LOGIN</h3>
             </div>
-            <form>
+            <form action="{{ route('login') }}">
+                @csrf
                 <div class="card-body">
                     <div class="mb-3">
-                        <input type="text" class="form-control form-control-lg mx-auto" id="username"
+                        <input type="text" class="form-control form-control-lg mx-auto" id="username" name="username"
                             aria-describedby="emailHelp" placeholder="Username" style="max-width: 300px;">
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control form-control-lg mx-auto" id="password"
+                        <input type="password" class="form-control form-control-lg mx-auto" id="password" name="password"
                             placeholder="Password" style="max-width: 300px;">
                     </div>
                 </div>

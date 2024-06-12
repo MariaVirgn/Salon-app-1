@@ -23,10 +23,16 @@
                         <input type="text" class="form-control form-control-lg mx-auto" id="username" placeholder="Masukkan Username" style="max-width: 500px;">
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control form-control-lg mx-auto" id="nomor" placeholder="Masukkan Nomor" style="max-width: 500px;">
+                        <input type="number" class="form-control form-control-lg mx-auto" id="nomor" placeholder="Masukkan Nomor" style="max-width: 500px;">
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control form-control-lg mx-auto" id="email" placeholder="Masukkan E-mail" style="max-width: 500px;">
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control form-control-lg mx-auto" id="password" placeholder="Masukkan Password" style="max-width: 500px;">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control form-control-lg mx-auto" id="rpassword" placeholder="Masukkan Password Ulang" style="max-width: 500px;">
                     </div>
                 </div>
                 <div class="card-footer">

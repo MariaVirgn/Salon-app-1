@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="container" style="margin-top: 15vh">
-        <div class="card">
+        <div class="card" style="box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.333);">
             <div class="card-header">
                 <h3 class="card-title">Daftar Jasa</h3>
             </div>

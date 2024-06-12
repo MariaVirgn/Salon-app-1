@@ -23,7 +23,7 @@
             style="box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.333);">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="./img/logo.png" alt="logo" width="35" height="45">
+                    {{-- <img src="./img/logo.png" alt="logo" width="35" height="45"> --}}
                     <span class="navbar-brand mb-0 h1">Celestical Salon</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -32,9 +32,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mr-3">
                         {{-- IF ADMIN --}}
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="menu-admin">Daftar Booking</a>
                         </li>
                         <li class="nav-item">
@@ -48,18 +48,21 @@
                         </li>
                         <li class="nav-item">
                             <button class="btn btn-danger" onclick="">Logout</button>
-                        </li>
+                        </li> --}}
 
                         {{-- IF USER --}}
-                        {{-- <li class="nav-item">
+                        <li class="nav-item ml-3">
                             <a class="nav-link" href="menu">Daftar Jasa</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ml-3">
+                            <a class="nav-link" href="booking">Pemesanan</a>
+                        </li>
+                        <li class="nav-item ml-3">
                             <a class="nav-link" href="edit-akun">Edit Akun</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ml-3">
                             <button class="btn btn-danger" onclick="">Logout</button>
-                        </li> --}}
+                        </li>
                     </ul>
                 </div>
             </div>
