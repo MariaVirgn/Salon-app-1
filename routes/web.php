@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,16 +13,26 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// auth
 Route::get('/', function () {
     return view('login');
-});
-
+})->name('login');
+Route::post('/', [AuthController::class, 'login']);
 Route::get('/register', function () {
     return view('register');
 });
+Route::post('/register', [AuthController::class, 'register']);
 
-// ROUTE ADMIN
+// customer
+Route::get('/menu', function () {
+    return view('user/home');
+});
+
+Route::get('/edit-akun', function () {
+    return view('user/editAkun');
+});
+
+// Admin
 Route::get('/menu-admin', function () {
     return view('admin/daftarBooking');
 });
@@ -36,14 +47,4 @@ Route::get('/kelola-akun', function () {
 
 Route::get('/riwayat', function () {
     return view('admin/riwayat');
-});
-
-
-// ROUTE USER
-Route::get('/menu', function () {
-    return view('user/home');
-});
-
-Route::get('/edit-akun', function () {
-    return view('user/editAkun');
 });
