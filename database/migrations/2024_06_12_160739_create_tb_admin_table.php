@@ -15,7 +15,7 @@ class CreateTbAdminTable extends Migration
     {
         Schema::create('tb_admin', function (Blueprint $table) {
             $table->id('id_admin');
-            $table->string('username_admin')->nullable(false);
+            $table->string('username')->nullable(false)->unique();
             $table->string('password')->nullable(false);
             $table->timestamps();
         });

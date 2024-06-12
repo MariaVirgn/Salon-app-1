@@ -15,8 +15,10 @@ class CreateTbCustTable extends Migration
     {
         Schema::create('tb_cust', function (Blueprint $table) {
             $table->id('id_cust');
-            $table->string('nama_cust')->nullable(false);
+            $table->string('username')->nullable(false)->unique();
+            $table->string('email')->nullable(false);
             $table->string('nomor_cust')->nullable(false);
+            $table->string('alamat');
             $table->string('password')->nullable(false);
             $table->timestamps();
         });
