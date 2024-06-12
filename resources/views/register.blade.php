@@ -15,25 +15,26 @@
     <div class="container-flex">
         <div class="card text-center">
             <div class="card-header">
-                <h3 class="card-title">LOGIN</h3>
+                <h3 class="card-title">REGISTER</h3>
             </div>
             <form>
                 <div class="card-body">
                     <div class="mb-3">
-                        <input type="text" class="form-control form-control-lg mx-auto" id="username"
-                            aria-describedby="emailHelp" placeholder="Username" style="max-width: 300px;">
+                        <input type="text" class="form-control form-control-lg mx-auto" id="username" placeholder="Masukkan Username" style="max-width: 500px;">
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control form-control-lg mx-auto" id="password"
-                            placeholder="Password" style="max-width: 300px;">
+                        <input type="text" class="form-control form-control-lg mx-auto" id="nomor" placeholder="Masukkan Nomor" style="max-width: 500px;">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control form-control-lg mx-auto" id="password" placeholder="Masukkan Password" style="max-width: 500px;">
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="row justify-content-center">
-                        <button type="submit" class="btn btn-primary w-25">LOGIN</button>
+                        <button type="submit" class="btn btn-primary w-25">REGISTER</button>
                     </div>
                     <div class="row m-2">
-                        <a href="register" style="text-decoration:none;">Register</a>
+                        <a href="/" style="text-decoration:none;">Login</a>
                     </div>
                 </div>
             </form>
