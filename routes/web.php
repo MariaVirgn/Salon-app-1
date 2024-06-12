@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JasaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -28,6 +29,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/menu', function () {
     return view('user/home');
 })->name('cust_menu');
+Route::get('/read', [JasaController::class, 'read'])->name('read_jasa');
 
 Route::get('/edit-akun', function () {
     return view('user/editAkun');

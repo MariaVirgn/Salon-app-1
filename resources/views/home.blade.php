@@ -62,7 +62,7 @@
                             <a class="nav-link" href="edit-akun">Edit Akun</a>
                         </li>
                         <li class="nav-item ml-3">
-                            <button class="btn btn-danger" onclick="">Logout</button>
+                            <button class="btn btn-danger" onclick="logout()">Logout</button>
                         </li>
                     </ul>
                 </div>

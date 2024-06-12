@@ -12,21 +12,13 @@
                         <thead class="table-light">
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Nama Jasa</th>
+                                <th scope="col" >Nama Jasa</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="tBody" class="table-group-divider">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Potong Rambut</td>
-                                <td>50000</td>
-                                <td>
-                                    <button class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#modalPesan">Pesan</button>
-                                </td>
-                            </tr>
+                        <tbody id="tbody" class="table-group-divider">
+                
                         </tbody>
                     </table>
             </div>
@@ -69,7 +61,23 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-
+            read();
         });
+
+        function read() {
+            var html = "";
+            $.get("{{ route('read_jasa') }}", {}, function(data, status) {
+                console.log(data);
+                for (let i = 0; i < data.length; i++) {
+                    html += "<tr>"
+                    html += "<td>"+data[i].nama_jasa+"</td>"
+                    html += "<td>"+data[i].nama_jasa+"</td>"
+                    html += "<td>"+data[i].nama_jasa+"</td>"                    
+                    html += "<td>"+data[i].nama_jasa+"</td>"                    
+                    html +="</tr>"                                        
+                }
+                $('#tbody').html(html);
+            })
+        }
     </script>
 @endsection()
