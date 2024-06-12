@@ -12,20 +12,31 @@
 </head>
 
 <body>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container-flex">
         <div class="card text-center">
             <div class="card-header">
                 <h3 class="card-title">LOGIN</h3>
             </div>
-            <form>
+            <form action="/login" method="POST">
+                @csrf
                 <div class="card-body">
                     <div class="mb-3">
                         <input type="text" class="form-control form-control-lg mx-auto" id="username"
-                            aria-describedby="emailHelp" placeholder="Username" style="max-width: 300px;">
+                            name="username" aria-describedby="emailHelp" placeholder="Username"
+                            style="max-width: 300px;">
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control form-control-lg mx-auto" id="password"
-                            placeholder="Password" style="max-width: 300px;">
+                            name="password" placeholder="Password" style="max-width: 300px;">
                     </div>
                 </div>
                 <div class="card-footer">

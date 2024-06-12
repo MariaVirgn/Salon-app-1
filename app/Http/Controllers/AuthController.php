@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('login');
     }
-    
-    public function register(Request $request){
+
+    public function register(Request $request)
+    {
         $cradential = $request->validate([
             'nama' => 'required',
             'nomor' => 'required',
@@ -31,32 +33,35 @@ class AuthController extends Controller
                 $request->input('password')
             );
 
-            if($result['status'] == 'success'){
+            if ($result['status'] == 'success') {
                 return redirect()->route('login');
-            }else{
+            } else {
                 return redirect()->back()->withErrors($cradential)->withInput();
             }
-        }else {
+        } else {
             return redirect()->back()->withErrors($cradential)->withInput();
         }
     }
 
-    public function login(Request $request){
-        $cradentials = $request->validate([
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
-        
-        if (Auth::attempt($cradentials)) {
+
+        if (Auth::attempt($credentials)) {
             return redirect()->route('cust_menu');
-        } elseif (Auth::guard('admin')->attempt($cradentials)) {            
-            return redirect()->route('admin_menu');        
+        } elseif (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->route('admin_menu');
         } else {
-            return redirect()->back()->withErrors("email atau password salah")->withInput();
+            return redirect()->back()->withErrors("Username atau password salah")->withInput();
         }
     }
 
-    public function logout(){
+
+    public function logout()
+    {
         Auth::logout();
         return redirect()->route('login');
     }
