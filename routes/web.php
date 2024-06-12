@@ -17,12 +17,12 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('login');
 })->name('login');
-Route::post('/', [AuthController::class, 'login']);
-
+Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', function () {
     return view('register');
 });
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // customer
 Route::get('/menu', function () {

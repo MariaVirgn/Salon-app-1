@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Celestical Salon</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="./img/logo.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -47,8 +48,8 @@
                             <a class="nav-link" href="riwayat">Riwayat</a>
                         </li>
                         <li class="nav-item">
-                            <button class="btn btn-danger" onclick="">Logout</button>
-                        </li> --}}
+                            <button class="btn btn-danger" onclick="logout()">Logout</button>
+                        </li>
 
                         {{-- IF USER --}}
                         <li class="nav-item ml-3">
@@ -76,7 +77,37 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    function logout() {
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: "{{ route('logout') }}",
+            method: "POST",
+            data: {},
+            success: function(response) {
+                window.location = "{{ route('login') }}";
+                // // Show success SweetAlert after deletion
+                // Swal.fire({
+                //     title: 'Logout success!',
+                //     icon: 'success',
+                //     timer: 1500,
+                //     buttons: false,
+                // });
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr.responseText);
+                alert('Error: ' + xhr.responseText);
+            }
+        })
+
+    }
+</script>
 
 @yield('scripts')
 
