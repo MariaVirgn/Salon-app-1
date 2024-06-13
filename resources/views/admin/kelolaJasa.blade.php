@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col">
-                        <button class="btn btn-primary">Tambah</button>
+                        <button class="btn btn-primary" data-bs-toggle='modal' data-bs-target='#modalInsert'>Tambah</button>
                     </div>
                 </div>
                 <table id="example1" class="table table-bordered table-striped">
@@ -21,14 +21,40 @@
                         </tr>
                     </thead>
                     <tbody id="tBody" class="table-group-divider">
-                       
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+
+    <!-- Modal Insert-->
+    <div class="modal fade" id="modalInsert" tabindex="-1" aria-labelledby="insertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="insertModalLabel">Tambah Jasa</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control mb-3" placeholder="Nama" id="nama">
+                            <input type="text" class="form-control mb-3" placeholder="Harga" id="harga">
+                            <input type="text" class="form-control mb-3" placeholder="Deskripsi" id="deskripsi">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit-->
     <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -73,6 +99,10 @@
                 }
                 $('#tBody').html(html);
             })
+        }
+
+        function insert() {
+                        
         }
     </script>
 @endsection()
