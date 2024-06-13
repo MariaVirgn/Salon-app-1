@@ -15,6 +15,7 @@
                                 <th scope="col">Jasa</th>
                                 <th scope="col">Jam</th>
                                 <th scope="col">Tanggal</th>
+                                <th scope="col">Harga</th>
                                 <th scope="col">Metode Pembayaran</th>
                                 <th scope="col">Aksi</th>
                             </tr>
@@ -31,7 +32,7 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            read();
+            read();            
         });
 
         function read() {
@@ -44,22 +45,24 @@
                     html += "<td>" + data[i].nama_jasa + "</td>"
                     html += "<td>" + data[i].jam_booking + "</td>"
                     html += "<td>" + data[i].tanggal_booking + "</td>"
+                    html += "<td id='harga'>" + data[i].harga_jasa + "</td>"
                     html += "<td>" + data[i].metode_pembayaran + "</td>"
-                    html += "<td><button class='btn btn-primary' onclick='konfirmasi(" + data[i].id_booking +
+                    html += "<td><button class='btn btn-primary' onclick='konfirmasi(" + data[i].id_booking+","+ data[i].harga_jasa +
                         ")'>Konfirmasi</button><button class='btn btn-danger ml-2' onclick='hapus(" + data[i]
                         .id_booking + ")'>Hapus</button></td>"
-                    html += "</tr>"
+                    html += "</tr>"                    
                 }
                 $('#tBody').html(html);
             })
         }
 
-        function konfirmasi(id) {
+        function konfirmasi(id, harga) {
             var url = "{{ route('konfirmasiBooking', ':id') }}";
             url = url.replace(':id', id);
-
+                        
             $.post(url, {
-                _token: '{{ csrf_token() }}'
+                _token: '{{ csrf_token() }}',
+                'harga':harga
             }, function(data, status) {
                 if (status === 'success') {
                     alert('Pesanan Berhasil Dikonfirmasi');

@@ -24,8 +24,8 @@ Route::get('/', function () {
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', function () {
     return view('register');
-});
-Route::post('/register', [AuthController::class, 'register']);
+})->name('register');
+Route::post('/register-cust', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // customer

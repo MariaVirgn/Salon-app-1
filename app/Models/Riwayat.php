@@ -15,4 +15,24 @@ class Riwayat extends Model
         'id_booking',
         'harga_jasa_booking'
     ];
+
+    public static function insertRiwayat($id, $harga){
+        $data = self::create([
+            'id_booking'=> $id,
+            'harga_jasa_booking'=>$harga,
+        ]);
+
+        if ($data) {
+            return [
+                'status' => 'success',
+                'message' => 'successfully insert riwayat',                
+            ];
+        } else {
+            return [
+                'status' => 'error',
+                'message' => 'Failed to insert riwayat',
+            ];
+        }
+
+    }
 }

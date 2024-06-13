@@ -9,19 +9,17 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead class="table-light">
-                            <tr>
+                            <tr>                                
                                 <th scope="col">No</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Nomor</th>
+                                <th scope="col">Nama Customer</th>
+                                <th scope="col">Jasa</th>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Harga</th>
+                                <th scope="col">Metode Pembayaran</th>
                             </tr>
                         </thead>
-                        <tbody id="tBody" class="table-group-divider">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-
-                            </tr>
+                        <tbody id="tBody" class="table-group-divider">                            
                         
                         </tbody>
                     </table>
@@ -38,18 +36,21 @@
 
         function read() {
             var html = "";
+            var no = 1;
             $.get("{{ route('getRiwayatTransaksi') }}", {}, function(data, status) {
                 console.log(data);
                 for (let i = 0; i < data.length; i++) {
-                //     html += "<tr>"
-                //     html += "<td>" + data[i].id_jasa + "</td>"
-                //     html += "<td>" + data[i].nama_jasa + "</td>"
-                //     html += "<td>" + data[i].harga_jasa + "</td>"
-                //     html +=
-                //         "<td><button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modalEdit'>Edit</button> <button class='btn btn-danger'>Hapus</button></td>"
-                //     html += "</tr>"
+                    html += "<tr>"
+                    html += "<td>" + no + "</td>"
+                    html += "<td>" + data[i].username + "</td>"
+                    html += "<td>" + data[i].nama_jasa + "</td>"
+                    html += "<td>" + data[i].jam_booking + "</td>"
+                    html += "<td>" + data[i].tanggal_booking + "</td>"
+                    html += "<td>" + data[i].harga_jasa_booking + "</td>"
+                    html += "<td>" + data[i].metode_pembayaran + "</td>"                    
+                    no++;
                 }
-                // $('#tBody').html(html);
+                $('#tBody').html(html);
             })
         }
     </script>

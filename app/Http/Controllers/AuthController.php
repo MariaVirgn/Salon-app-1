@@ -16,17 +16,17 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $cradential = $request->validate([
-            'nama' => 'required',
+            'username' => 'required',
             'nomor' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'alamat' => 'required',
             'password' => 'required',
             'rpPassword' => 'required',
-        ]);
+        ]);        
 
         if ($request->password == $request->rpPassword) {
             $result = Cust::register(
-                $request->input('nama'),
+                $request->input('username'),
                 $request->input('nomor'),
                 $request->input('email'),
                 $request->input('alamat'),
