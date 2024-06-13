@@ -45,9 +45,9 @@
                     html += "<td>" + data[i].tanggal_booking + "</td>"
                     html += "<td>" + data[i].metode_pembayaran + "</td>"
                     if (data[i].val === "Y") {
-                        html += "<td>Pesanan Diterima</td>"
+                        html += "<td>Pesanan Diterima <i class='bi bi-check-circle-fill' style='color:green'></i></td>"
                         } else {
-                        html += "<td>Menunggu Konfirmasi</td>"
+                        html += "<td>Menunggu Konfirmasi <i class='bi bi-hourglass-split'></i></td>"
                     }
                     html += "</tr>"
                 }
