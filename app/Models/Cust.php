@@ -12,8 +12,7 @@ class Cust extends Model implements Authenticatable
     use AuthenticatableTrait,HasFactory;
 
     protected $table = 'tb_cust';
-    protected $primaryKey = 'id_cust'; 
-
+    protected $primaryKey = 'id_cust';
     protected $fillable =[
         'username',
         'nomor_cust',

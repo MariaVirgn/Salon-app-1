@@ -55,7 +55,7 @@ class JasaController extends Controller
             return response()->json(['success' => false, 'message'=>'Update jasa gagal']);
         }
     }
-//  $customer = Auth::user()->id;
+
     function deleteJasa($id){
         $data = Jasa::find($id);
 

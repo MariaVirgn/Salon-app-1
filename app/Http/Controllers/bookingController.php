@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cust;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,26 @@ class bookingController extends Controller
             ->get();
 
         return $data;
+    }
+
+    function formBooking($id){
+        $cust = Auth::user()->id_cust;
+        $data = Cust::find($cust);
+
+        return $data;
+    }
+
+    function tambahBooking(Request $request, $id){
+        $cust = Auth::user()->id_cust;
+        $result = Booking::insertPesan(
+            $cust,
+            $id,
+            $request->input('jam'),
+            $request->input('tgl'),
+            $request->input('pembayaran')
+        );
+
+        return $result;
     }
 
     function konfirmasiBooking($id)
