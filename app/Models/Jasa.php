@@ -10,12 +10,14 @@ class Jasa extends Model
     use HasFactory;
 
     protected $table = 'tb_jasa';
-
+    protected $primaryKey ='id_jasa';
     protected $fillable =[
         'nama_jasa',
         'harga_jasa',
         'deskripsi_jasa'
     ];
+
+    
 
     public static function insertJasa($nama, $harga, $desc){
         $data = self::create([
