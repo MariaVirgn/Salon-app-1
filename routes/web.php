@@ -39,6 +39,8 @@ Route::get('/edit-akun', function () {
 Route::get('/booking', function () {
     return view('user/booking');
 });
+Route::get('/form-booking/{id}', [bookingController::class, 'formBooking'])->name('formBooking');
+Route::post('/tambah-booking/{id}', [bookingController::class, 'tambahBooking'])->name('tambahBooking');
 
 // Admin
 Route::get('/menu-admin', function () {

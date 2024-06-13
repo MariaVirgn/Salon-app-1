@@ -37,10 +37,12 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
+                            <input type="text" class="form-control mb-3" id="idJasa" hidden>
                             <input type="text" class="form-control mb-3" placeholder="Nama" id="nama">
                             <input type="text" class="form-control mb-3" placeholder="Nomor" id="nomor">
                             <input type="text" class="form-control mb-3" placeholder="Alamat" id="alamat">
-                            <input type="text" class="form-control mb-3" placeholder="Jam" id="jam">
+                            <input type="time" class="form-control mb-3" placeholder="Jam Booking" id="jam">
+                            <input type="date" class="form-control mb-3" placeholder="Tanggal" id="tgl">
                             <select class="form-control mb-2" id="pembayaran" name="pembayaran">
                                 <option value="">Pilih Metode Pembayaran</option>
                                 <option value="cash">Cash</option>
@@ -51,7 +53,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Pesan</button>
+                    <button type="button" class="btn btn-primary" onclick="tambahBooking()">Pesan</button>
                 </div>
             </div>
         </div>
@@ -72,11 +74,60 @@
                     html += "<td>"+data[i].id_jasa+"</td>"
                     html += "<td>"+data[i].nama_jasa+"</td>"
                     html += "<td>"+data[i].harga_jasa+"</td>"                    
-                    html += "<td><button class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modalPesan'>Pesan</button></td>"                    
+                    html += "<td><button class='btn btn-primary' onclick='showForm("+data[i].id_jasa+")'>Pesan</button></td>"                    
                     html +="</tr>"                                        
                 }
                 $('#tbody').html(html);
             })
+        }
+
+        function showForm(id) {
+            $('#modalPesan').modal('show');
+            var url = "{{ route('formBooking', ':id') }}";
+            url = url.replace(':id', id);
+
+            $.get(url, {}, function(data, status) {
+                console.log(data);
+                $('#idJasa').val(id);
+                $('#nama').val(data.username);
+                $('#nomor').val(data.nomor_cust);
+                $('#alamat').val(data.alamat);
+            });
+        }
+
+        function tambahBooking() {
+            var id = $('#idJasa').val();
+            var jam = $('#jam').val();
+            var tgl = $('#tgl').val();            
+            var pembayaran = $('#pembayaran').val();            
+
+            var url = "{{ route('tambahBooking', ':id') }}";
+            url = url.replace(':id', id);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: url,
+                method: "POST", 
+                data: {
+                    'jam':jam,
+                    'tgl':tgl,
+                    'pembayaran':pembayaran
+                },
+                success: function(data, status) {                    
+                    read();   
+                    $("#modalPesan").modal("hide");
+                    alert('Tambah Data Pesanan Sukses')
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });       
+            
         }
     </script>
 @endsection()
