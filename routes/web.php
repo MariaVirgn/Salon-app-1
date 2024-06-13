@@ -31,7 +31,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/menu', function () {
     return view('user/home');
 })->name('cust_menu');
-Route::get('/read', [JasaController::class, 'read'])->name('read_jasa');
 
 Route::get('/edit-akun', function () {
     return view('user/editAkun');
@@ -48,9 +47,12 @@ Route::get('/menu-admin', function () {
 Route::get('/readBooking', [bookingController::class, 'read'])->name('getDaftarBooking');
 Route::post('/konfirmasi-booking/{id}', [bookingController::class, 'konfirmasiBooking'])->name('konfirmasiBooking');
 
+
 Route::get('/kelola-jasa', function () {
     return view('admin/kelolaJasa');
 });
+Route::get('/read', [JasaController::class, 'read'])->name('read_jasa');
+Route::post('/insert', [JasaController::class, 'insert'])->name('insert_jasa');
 
 Route::get('/kelola-akun', function () {
     return view('admin/kelolaAkun');
