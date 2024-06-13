@@ -10,6 +10,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead class="table-light">
                             <tr>
+                                <th scope="col">No</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Jasa</th>
                                 <th scope="col">Jam</th>
@@ -35,10 +36,12 @@
 
         function cekPesanan() {
             var html ="";
+            var no = 1;
             $.get("{{ route('cekPesanan') }}", {}, function(data, status) {
                 console.log(data);
                 for (let i = 0; i < data.length; i++) {
                     html += "<tr>"
+                    html += "<td>" + no + "</td>"
                     html += "<td>" + data[i].username + "</td>"
                     html += "<td>" + data[i].nama_jasa + "</td>"
                     html += "<td>" + data[i].jam_booking + "</td>"
@@ -50,6 +53,8 @@
                         html += "<td>Menunggu Konfirmasi <i class='bi bi-hourglass-split'></i></td>"
                     }
                     html += "</tr>"
+
+                    no++;
                 }
                 $('#tBody').html(html);
             });
