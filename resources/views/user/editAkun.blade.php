@@ -1,58 +1,23 @@
 @extends('headerUser')
 @section('container')
-    <div class="container" style="margin-top: 15vh">
-        <div class="card" style="box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.333);">
+    <div class="container d-flex justify-content-center" style="margin-top: 15vh">
+        <div class="card w-50" style="box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.333);">
             <div class="card-header">
                 <h3 class="card-title">Edit Akun</h3>
             </div>
-            <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Nomor</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tBody" class="table-group-divider">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>
-                                <button class="btn btn-sm btn-warning text-light"  data-bs-toggle="modal"
-                                data-bs-target="#modalEdit">Edit</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Akun</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">
-                            <input type="text" class="form-control mb-3" placeholder="Nama" id="nama">
-                            <input type="text" class="form-control mb-3" placeholder="Nomor" id="nomor">
-                            <input type="text" class="form-control mb-3" placeholder="Alamat" id="alamat">
-                            <input type="email" class="form-control mb-3" placeholder="email" id="email">
-                        </div>
+            <div class="card-body text-center">
+                <div class="row-md-5 d-flex justify-content-center">
+                    <div class="col-7 mb-3">
+                        <input type="text" class="form-control" id="id_cust" hidden>
+                        <input type="text" class="form-control" id="nama">
+                        <input type="email" class="form-control mt-3" id="email">
+                        <input type="number" class="form-control mt-3" id="nomor">
+                        <input type="text" class="form-control mt-3" id="alamat">
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Edit</button>
-                </div>
+            </div>
+            <div class="card-footer text-center">
+                <button class="btn btn-primary" onclick="edit()">Simpan Perubahan</button>
             </div>
         </div>
     </div>
@@ -61,7 +26,44 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            
+            read();
         });
+
+        function read() {
+            var html = "";
+            $.get("{{ route('editAccount') }}", {}, function(data, status) {
+                    $('#nama').val(data.username);
+                    $('#email').val(data.email);
+                    $('#nomor').val(data.nomor_cust);
+                    $('#alamat').val(data.alamat);
+            })
+        }
+
+        function edit() {
+            var id_cust = $('#id_cust').val();
+            var username = $('#nama').val();
+            var nomor = $('#nomor').val();
+            var alamat = $('#alamat').val();
+            var email = $('#email').val();
+
+            $.ajax({
+                url: "{{ route('updateAccount') }}",
+                type: "POST",
+                data: {
+                    username: username,
+                    email: email,
+                    nomor: nomor,
+                    alamat: alamat,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    alert('Data berhasil diubah');
+                    read(); 
+                },
+                error: function(xhr, status, error) {
+                    alert('Terjadi kesalahan: ' + error);
+                }
+            });
+        }
     </script>
 @endsection()

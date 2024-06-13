@@ -10,20 +10,16 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead class="table-light">
                             <tr>
-                                <th scope="col">No</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Jasa</th>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Metode Pembayaran</th>
                                 <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody id="tBody" class="table-group-divider">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Didi</td>
-                                <td>Potong Rambut</td>
-                                <td>Diterima</td>
-                            </tr>
-                        
+
                         </tbody>
                     </table>
             </div>
@@ -34,7 +30,29 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            
+            cekPesanan();
         });
+
+        function cekPesanan() {
+            var html ="";
+            $.get("{{ route('cekPesanan') }}", {}, function(data, status) {
+                console.log(data);
+                for (let i = 0; i < data.length; i++) {
+                    html += "<tr>"
+                    html += "<td>" + data[i].username + "</td>"
+                    html += "<td>" + data[i].nama_jasa + "</td>"
+                    html += "<td>" + data[i].jam_booking + "</td>"
+                    html += "<td>" + data[i].tanggal_booking + "</td>"
+                    html += "<td>" + data[i].metode_pembayaran + "</td>"
+                    if (data[i].val === "Y") {
+                        html += "<td>Pesanan Diterima</td>"
+                        } else {
+                        html += "<td>Menunggu Konfirmasi</td>"
+                    }
+                    html += "</tr>"
+                }
+                $('#tBody').html(html);
+            });
+        }
     </script>
 @endsection()

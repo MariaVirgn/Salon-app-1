@@ -51,14 +51,15 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            $_SESSION['role'] = 'cust';
             return redirect()->route('cust_menu');
         } elseif (Auth::guard('admin')->attempt($credentials)) {
+            $_SESSION['role'] = 'admin';
             return redirect()->route('admin_menu');
         } else {
             return redirect()->back()->withErrors("Username atau password salah")->withInput();
         }
     }
-
 
     public function logout()
     {
