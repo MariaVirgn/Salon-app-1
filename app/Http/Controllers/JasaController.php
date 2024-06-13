@@ -30,4 +30,8 @@ class JasaController extends Controller
 
         return $result;
     }
+
+    function update(Request $request, $id){
+        
+    }
 }

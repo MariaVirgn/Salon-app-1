@@ -17,6 +17,7 @@
                             <th scope="col">No</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Harga</th>
+                            <th scope="col">Deskripsi</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -42,13 +43,13 @@
                         <div class="col">
                             <input type="text" class="form-control mb-3" placeholder="Nama" id="nama">
                             <input type="text" class="form-control mb-3" placeholder="Harga" id="harga">
-                            <input type="text" class="form-control mb-3" placeholder="Deskripsi" id="deskripsi">
+                            <input type="text" class="form-control mb-3" placeholder="Deskripsi" id="desc">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="insert()">Save</button>
                 </div>
             </div>
         </div>
@@ -93,16 +94,47 @@
                     html += "<td>" + data[i].id_jasa + "</td>"
                     html += "<td>" + data[i].nama_jasa + "</td>"
                     html += "<td>" + data[i].harga_jasa + "</td>"
+                    html += "<td>" + data[i].deskripsi_jasa + "</td>"
                     html +=
-                        "<td><button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modalEdit'>Edit</button> <button class='btn btn-danger'>Hapus</button></td>"
+                        "<td><button class='btn btn-warning' onclick='update("+data[i].id_jasa+")'>Edit</button> <button class='btn btn-danger'>Hapus</button></td>"
                     html += "</tr>"
                 }
                 $('#tBody').html(html);
             })
         }
 
-        function insert() {
-                        
+        function insert() {            
+            var nama = $('#nama').val();
+            var harga = $('#harga').val();
+            var desc = $('#desc').val();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: "{{ route('insert_jasa') }}",
+                method: "POST", 
+                data: {
+                    'nama':nama,
+                    'harga':harga,
+                    'desc':desc
+                },
+                success: function(data, status) {                    
+                    read();                    
+                    $("#modalInsert").modal("hide");
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });       
+        }
+
+        function update(id) {
+            $('#modalEdit').modal('show');
+
         }
     </script>
 @endsection()
