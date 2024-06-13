@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class bookingController extends Controller
 {
@@ -41,6 +42,18 @@ class bookingController extends Controller
 
         $data->delete();
 
-        return response()->json(['success' => true, 'message' => 'Booking deleted successfully']);
+        return response()->json(['success' => true, 'message' => 'Pesanan Berhasil Dihapus']);
+    }
+
+    public function cekPesanan()
+    {
+        $customerId = Auth::id();
+
+        $pesanan = Booking::join('tb_cust', 'tb_booking.id_cust', '=', 'tb_cust.id_cust')->join('tb_jasa', 'tb_booking.id_jasa', '=', 'tb_jasa.id_jasa')
+        ->select('tb_booking.*', 'tb_cust.username', 'tb_jasa.nama_jasa')
+        ->where('tb_booking.id_cust', $customerId)
+        ->get();
+
+        return $pesanan;
     }
 }

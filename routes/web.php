@@ -35,10 +35,13 @@ Route::get('/menu', function () {
 Route::get('/edit-akun', function () {
     return view('user/editAkun');
 });
+Route::get('/edit-account', [CustController::class, 'editAccount'])->name('editAccount');
+Route::post('/update-account', [CustController::class, 'updateAccount'])->name('updateAccount');
 
 Route::get('/booking', function () {
     return view('user/booking');
 });
+Route::get('/pesanan-cust', [bookingController::class, 'cekPesanan'])->name('cekPesanan');
 
 // Admin
 Route::get('/menu-admin', function () {
@@ -59,6 +62,11 @@ Route::get('/kelola-akun', function () {
     return view('admin/kelolaAkun');
 });
 Route::get('/readAkun', [CustController::class, 'read'])->name('getDaftarAkun');
+Route::get('/get-customer/{id}', [CustController::class, 'getCustomerById'])->name('getCustomerById');
+Route::delete('/delete-akun/{id}', [CustController::class, 'deleteAkun'])->name('deleteAkun');
+Route::put('/update-customer', [CustController::class, 'updateCustomer'])->name('updateCustomer');
+
+
 
 Route::get('/riwayat', function () {
     return view('admin/riwayat');
