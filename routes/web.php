@@ -54,6 +54,9 @@ Route::get('/kelola-jasa', function () {
 });
 Route::get('/read', [JasaController::class, 'read'])->name('read_jasa');
 Route::post('/insert', [JasaController::class, 'insert'])->name('insert_jasa');
+Route::get('/update-jasa/{id}', [JasaController::class, 'edit'])->name('edit_jasa');
+Route::post('/update-jasa/{id}', [JasaController::class, 'update'])->name('update_jasa');
+Route::delete('/delete-jasa/{id}', [JasaController::class, 'deleteJasa'])->name('delete_jasa');
 
 Route::get('/kelola-akun', function () {
     return view('admin/kelolaAkun');

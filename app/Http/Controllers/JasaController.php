@@ -31,7 +31,40 @@ class JasaController extends Controller
         return $result;
     }
 
+    function edit($id){
+        $data = Jasa::where('id_jasa', $id)->first();
+
+        return $data;
+    }
+
     function update(Request $request, $id){
+        $request->validate([
+            'nama'=>'required',
+            'harga'=>'required|numeric',
+            'desc'=>'required',
+        ]);
         
+        $data = Jasa::where('id_jasa', $id)->first();        
+        $data->nama_jasa = $request->input('nama');
+        $data->harga_jasa = $request->input('harga');
+        $data->deskripsi_jasa = $request->input('desc');
+        $data->save();
+        if($data){
+            return response()->json(['success' => true]);
+        }else{
+            return response()->json(['success' => false, 'message'=>'Update jasa gagal']);
+        }
+    }
+//  $customer = Auth::user()->id;
+    function deleteJasa($id){
+        $data = Jasa::find($id);
+
+        if (!$data) {
+            return response()->json(['success' => false, 'message' => 'Pesanan Tidak Ditemukan'], 404);
+        }
+
+        $data->delete();
+
+        return response()->json(['success' => true, 'message' => 'Booking deleted successfully']);
     }
 }
