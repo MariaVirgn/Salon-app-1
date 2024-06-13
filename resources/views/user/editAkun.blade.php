@@ -9,10 +9,10 @@
                 <div class="row-md-5 d-flex justify-content-center">
                     <div class="col-7 mb-3">
                         <input type="text" class="form-control" id="id_cust" hidden>
-                        <input type="text" class="form-control" id="nama">
-                        <input type="email" class="form-control mt-3" id="email">
-                        <input type="number" class="form-control mt-3" id="nomor">
-                        <input type="text" class="form-control mt-3" id="alamat">
+                        <input type="text" class="form-control" id="nama" placeholder="Nama">
+                        <input type="email" class="form-control mt-3" id="email" placeholder="E-mail">
+                        <input type="number" class="form-control mt-3" id="nomor" placeholder="Nomor Telephone">
+                        <input type="text" class="form-control mt-3" id="alamat" placeholder="Alamat">
                     </div>
                 </div>
             </div>

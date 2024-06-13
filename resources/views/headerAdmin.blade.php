@@ -1,7 +1,3 @@
-<?php 
-    $_SESSION['role'];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,20 +54,6 @@
                         <li class="nav-item">
                             <button class="btn btn-danger" onclick="logout()">Logout</button>
                         </li>
-
-                        {{-- IF USER --}}
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="menu">Daftar Jasa</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="booking">Pemesanan</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="edit-akun">Edit Akun</a>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-danger" onclick="logout()">Logout</button>
-                        </li> --}}
                     </ul>
                 </div>
             </div>

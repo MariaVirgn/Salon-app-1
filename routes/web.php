@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\bookingController;
 use App\Http\Controllers\CustController;
+use App\Http\Controllers\RiwayatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,8 +70,8 @@ Route::get('/get-customer/{id}', [CustController::class, 'getCustomerById'])->na
 Route::delete('/delete-akun/{id}', [CustController::class, 'deleteAkun'])->name('deleteAkun');
 Route::put('/update-customer', [CustController::class, 'updateCustomer'])->name('updateCustomer');
 
-
-
 Route::get('/riwayat', function () {
     return view('admin/riwayat');
 });
+Route::get('/riwayat-transaksi', [RiwayatController::class, 'getRiwayatTransaksi'])->name('getRiwayatTransaksi');
+

@@ -38,22 +38,6 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mr-3">
-                        {{-- IF ADMIN --}}
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="menu-admin">Daftar Booking</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="kelola-jasa">Kelola Jasa</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="kelola-akun">Kelola Akun</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="riwayat">Riwayat</a>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-danger" onclick="logout()">Logout</button>
-                        </li> --}}
 
                         {{-- IF USER --}}
                         <li class="nav-item">
