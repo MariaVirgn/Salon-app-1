@@ -77,3 +77,6 @@ Route::get('/riwayat', function () {
 });
 Route::get('/riwayat-transaksi', [RiwayatController::class, 'getRiwayatTransaksi'])->name('getRiwayatTransaksi');
 
+Route::get('/about', function () {
+    return view('admin/about');
+});
