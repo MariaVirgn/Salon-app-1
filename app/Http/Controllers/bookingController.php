@@ -11,6 +11,7 @@ class bookingController extends Controller
     {
         $data = Booking::join('tb_cust', 'tb_booking.id_cust', '=', 'tb_cust.id_cust')->join('tb_jasa', 'tb_booking.id_jasa', '=', 'tb_jasa.id_jasa')
             ->select('tb_booking.*','tb_cust.username','tb_jasa.nama_jasa')
+            ->where('tb_booking.val','N')
             ->get();
 
         return $data;
@@ -18,7 +19,7 @@ class bookingController extends Controller
 
     function konfirmasiBooking($id)
     {
-        $data = Booking::find($id);
+        $data = Booking::where('id_booking', $id)->first();
 
         if($data){
             $data->val = 'Y';

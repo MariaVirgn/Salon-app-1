@@ -46,7 +46,7 @@
                     html += "<td>"+data[i].jam_booking+"</td>"                    
                     html += "<td>"+data[i].tanggal_booking+"</td>"                    
                     html += "<td>"+data[i].metode_pembayaran+"</td>"                    
-                    html += "<td><button class='btn btn-primary' onclick='konfirmasi("data[i].id_booking")'>Konfirmasi</button><button class='btn btn-danger ml-2'>Hapus</button></td>"                    
+                    html += "<td><button class='btn btn-primary' onclick='konfirmasi("+data[i].id_booking+")'>Konfirmasi</button><button class='btn btn-danger ml-2'>Hapus</button></td>"                    
                     html +="</tr>"                                        
                 }
                 $('#tBody').html(html);

@@ -10,7 +10,8 @@ class Booking extends Model
     use HasFactory;
 
     protected $table = 'tb_booking';
-
+    protected $primaryKey = 'id_booking'; 
+    
     protected $fillable =[
         'id_cust',
         'id_jasa',
