@@ -1,4 +1,4 @@
-@extends('home')
+@extends('headerAdmin')
 @section('container')
     <div class="container" style="margin-top: 15vh">
         <div class="card" style="box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.333);">
@@ -11,59 +11,68 @@
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Nomor</th>
+                            <th scope="col">Alamat</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="tBody" class="table-group-divider">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>
-                                <button class="btn btn-sm btn-warning text-light" data-bs-toggle="modal"
-                                data-bs-target="#modalEdit">Edit</button>
-                                <button class="btn btn-sm btn-danger">Hapus</button>
-                            </td>
-                        </tr>
-                       
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Akun</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control mb-3" placeholder="Nama" id="nama">
-                                <input type="text" class="form-control mb-3" placeholder="Nomor" id="nomor">
-                                <input type="text" class="form-control mb-3" placeholder="Alamat" id="alamat">
-                                <input type="email" class="form-control mb-3" placeholder="email" id="email">
-                            </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Akun</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control mb-3" placeholder="Nama" id="nama">
+                            <input type="text" class="form-control mb-3" placeholder="Nomor" id="nomor">
+                            <input type="text" class="form-control mb-3" placeholder="Alamat" id="alamat">
+                            <input type="email" class="form-control mb-3" placeholder="email" id="email">
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="button" class="btn btn-primary">Edit</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Edit</button>
                 </div>
             </div>
         </div>
+    </div>
 @endsection()
 
 @section('scripts')
     <script>
         $(document).ready(function() {
-            
+            read();
         });
+
+        function read() {
+            var html = "";
+            $.get("{{ route('getDaftarAkun') }}", {}, function(data, status) {
+                for (let i = 0; i < data.length; i++) {
+                    html += "<tr>"
+                    html += "<td>" + data[i].id_cust + "</td>"
+                    html += "<td>" + data[i].username + "</td>"
+                    html += "<td>" + data[i].email + "</td>"
+                    html += "<td>" + data[i].nomor_cust + "</td>"
+                    html += "<td>" + data[i].alamat + "</td>"
+                    html += "<td><button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modalEdit'>Edit</button><button class='btn btn-danger ml-2'>Hapus</button></td>"                    
+                    html += "</tr>"
+                }
+                $('#tBody').html(html);
+            })
+        }
     </script>
 @endsection()

@@ -1,4 +1,4 @@
-@extends('home')
+@extends('headerUser')
 
 @section('container')
     <div class="container" style="margin-top: 15vh">
@@ -67,13 +67,12 @@
         function read() {
             var html = "";
             $.get("{{ route('read_jasa') }}", {}, function(data, status) {
-                console.log(data);
                 for (let i = 0; i < data.length; i++) {
                     html += "<tr>"
+                    html += "<td>"+data[i].id_jasa+"</td>"
                     html += "<td>"+data[i].nama_jasa+"</td>"
-                    html += "<td>"+data[i].nama_jasa+"</td>"
-                    html += "<td>"+data[i].nama_jasa+"</td>"                    
-                    html += "<td>"+data[i].nama_jasa+"</td>"                    
+                    html += "<td>"+data[i].harga_jasa+"</td>"                    
+                    html += "<td><button class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modalPesan'>Pesan</button></td>"                    
                     html +="</tr>"                                        
                 }
                 $('#tbody').html(html);

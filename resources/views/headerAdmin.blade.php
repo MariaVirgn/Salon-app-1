@@ -16,6 +16,10 @@
     .navbar-brand {
         color: #000000 !important;
     }
+
+    .nav-item{
+      margin-left: 3vh; 
+    }
 </style>
 
 <body>
@@ -35,7 +39,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mr-3">
                         {{-- IF ADMIN --}}
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="menu-admin">Daftar Booking</a>
                         </li>
                         <li class="nav-item">
@@ -52,18 +56,18 @@
                         </li>
 
                         {{-- IF USER --}}
-                        <li class="nav-item ml-3">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="menu">Daftar Jasa</a>
                         </li>
-                        <li class="nav-item ml-3">
+                        <li class="nav-item">
                             <a class="nav-link" href="booking">Pemesanan</a>
                         </li>
-                        <li class="nav-item ml-3">
+                        <li class="nav-item">
                             <a class="nav-link" href="edit-akun">Edit Akun</a>
                         </li>
-                        <li class="nav-item ml-3">
+                        <li class="nav-item">
                             <button class="btn btn-danger" onclick="logout()">Logout</button>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
