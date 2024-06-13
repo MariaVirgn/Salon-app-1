@@ -3,6 +3,8 @@
 use App\Http\Controllers\JasaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\bookingController;
+use App\Http\Controllers\CustController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,7 @@ Route::get('/menu', function () {
 Route::get('/edit-akun', function () {
     return view('user/editAkun');
 });
+
 Route::get('/booking', function () {
     return view('user/booking');
 });
@@ -41,6 +44,8 @@ Route::get('/booking', function () {
 Route::get('/menu-admin', function () {
     return view('admin/daftarBooking');
 })->name('admin_menu');
+Route::get('/readBooking', [bookingController::class, 'read'])->name('getDaftarBooking');
+Route::post('/konfirmasi-booking/{id}', [bookingController::class, 'konfirmasiBooking'])->name('konfirmasiBooking');
 
 
 Route::get('/kelola-jasa', function () {
@@ -52,6 +57,7 @@ Route::post('/insert', [JasaController::class, 'insert'])->name('insert_jasa');
 Route::get('/kelola-akun', function () {
     return view('admin/kelolaAkun');
 });
+Route::get('/readAkun', [CustController::class, 'read'])->name('getDaftarAkun');
 
 Route::get('/riwayat', function () {
     return view('admin/riwayat');

@@ -1,4 +1,4 @@
-@extends('home')
+@extends('headerAdmin')
 @section('container')
     <div class="container" style="margin-top: 15vh;">
         <div class="card" style="box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.333);">
@@ -33,7 +33,24 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            
+            read();
         });
+
+        function read() {
+            var html = "";
+            $.get("{{ route('getRiwayat') }}", {}, function(data, status) {
+                console.log(data);
+                // for (let i = 0; i < data.length; i++) {
+                //     html += "<tr>"
+                //     html += "<td>" + data[i].id_jasa + "</td>"
+                //     html += "<td>" + data[i].nama_jasa + "</td>"
+                //     html += "<td>" + data[i].harga_jasa + "</td>"
+                //     html +=
+                //         "<td><button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modalEdit'>Edit</button> <button class='btn btn-danger'>Hapus</button></td>"
+                //     html += "</tr>"
+                // }
+                $('#tBody').html(html);
+            })
+        }
     </script>
 @endsection()

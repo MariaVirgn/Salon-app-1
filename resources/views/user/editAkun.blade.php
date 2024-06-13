@@ -1,4 +1,4 @@
-@extends('home')
+@extends('headerUser')
 @section('container')
     <div class="container" style="margin-top: 15vh">
         <div class="card" style="box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.333);">
