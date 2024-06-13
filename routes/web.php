@@ -46,6 +46,7 @@ Route::get('/menu-admin', function () {
 })->name('admin_menu');
 Route::get('/readBooking', [bookingController::class, 'read'])->name('getDaftarBooking');
 Route::post('/konfirmasi-booking/{id}', [bookingController::class, 'konfirmasiBooking'])->name('konfirmasiBooking');
+Route::delete('/delete-booking/{id}', [BookingController::class, 'deleteBooking'])->name('deleteBooking');
 
 
 Route::get('/kelola-jasa', function () {

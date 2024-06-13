@@ -20,7 +20,7 @@
                             </tr>
                         </thead>
                         <tbody id="tBody" class="table-group-divider">
-                            
+
                         </tbody>
                     </table>
             </div>
@@ -37,24 +37,25 @@
         function read() {
             var html = "";
             $.get("{{ route('getDaftarBooking') }}", {}, function(data, status) {
-                console.log(data);
                 for (let i = 0; i < data.length; i++) {
                     html += "<tr>"
-                    html += "<td>"+data[i].id_booking+"</td>"
-                    html += "<td>"+data[i].username+"</td>"
-                    html += "<td>"+data[i].nama_jasa+"</td>"                    
-                    html += "<td>"+data[i].jam_booking+"</td>"                    
-                    html += "<td>"+data[i].tanggal_booking+"</td>"                    
-                    html += "<td>"+data[i].metode_pembayaran+"</td>"                    
-                    html += "<td><button class='btn btn-primary' onclick='konfirmasi("+data[i].id_booking+")'>Konfirmasi</button><button class='btn btn-danger ml-2'>Hapus</button></td>"                    
-                    html +="</tr>"                                        
+                    html += "<td>" + data[i].id_booking + "</td>"
+                    html += "<td>" + data[i].username + "</td>"
+                    html += "<td>" + data[i].nama_jasa + "</td>"
+                    html += "<td>" + data[i].jam_booking + "</td>"
+                    html += "<td>" + data[i].tanggal_booking + "</td>"
+                    html += "<td>" + data[i].metode_pembayaran + "</td>"
+                    html += "<td><button class='btn btn-primary' onclick='konfirmasi(" + data[i].id_booking +
+                        ")'>Konfirmasi</button><button class='btn btn-danger ml-2' onclick='hapus(" + data[i]
+                        .id_booking + ")'>Hapus</button></td>"
+                    html += "</tr>"
                 }
                 $('#tBody').html(html);
             })
         }
 
-        function konfirmasi(id){
-            var url = "{{ route('konfirmasiBooking',':id') }}";
+        function konfirmasi(id) {
+            var url = "{{ route('konfirmasiBooking', ':id') }}";
             url = url.replace(':id', id);
 
             $.post(url, {
@@ -67,6 +68,27 @@
                     alert('Terjadi Kesalahan Saat Mengkonfirmasi Pesanan')
                 }
             })
+        }
+
+        function hapus(id) {
+            var url = "{{ route('deleteBooking', ':id') }}";
+            url = url.replace(':id', id);
+
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data, status) {
+                    if (status === 'success') {
+                        alert('Pesanan Berhasil Dihapus');
+                        read();
+                    } else {
+                        alert('Terjadi Kesalahan Saat Menghapus Pesanan');
+                    }
+                }
+            });
         }
     </script>
 @endsection()
