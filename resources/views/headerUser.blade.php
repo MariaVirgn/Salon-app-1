@@ -42,6 +42,9 @@
 
                         {{-- IF USER --}}
                         <li class="nav-item">
+                            <a class="nav-link" href="home">Home</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="menu">Daftar Jasa</a>
                         </li>
                         <li class="nav-item">

@@ -30,6 +30,10 @@ Route::post('/register-cust', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // customer
+Route::get('/home', function () {
+    return view('user/welcome');
+});
+
 Route::get('/menu', function () {
     return view('user/home');
 })->name('cust_menu');
