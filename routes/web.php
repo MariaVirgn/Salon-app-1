@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\JasaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -46,6 +47,11 @@ Route::get('/form-booking/{id}', [bookingController::class, 'formBooking'])->nam
 Route::post('/tambah-booking/{id}', [bookingController::class, 'tambahBooking'])->name('tambahBooking');
 Route::get('/pesanan-cust', [bookingController::class, 'cekPesanan'])->name('cekPesanan');
 
+Route::get('/about', function () {
+    return view('user/about');
+});
+Route::get('/getAbout', [AboutController::class, 'getAbout'])->name('getAbout');
+
 // Admin
 Route::get('/menu-admin', function () {
     return view('admin/daftarBooking');
@@ -77,6 +83,7 @@ Route::get('/riwayat', function () {
 });
 Route::get('/riwayat-transaksi', [RiwayatController::class, 'getRiwayatTransaksi'])->name('getRiwayatTransaksi');
 
-Route::get('/about', function () {
+Route::get('/about-admin', function () {
     return view('admin/about');
 });
+Route::post('/update-about', [AboutController::class, 'updateAbout'])->name('updateAbout');

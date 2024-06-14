@@ -53,7 +53,7 @@
                             <a class="nav-link" href="riwayat">Riwayat</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about">About</a>
+                            <a class="nav-link" href="about-admin">About</a>
                         </li>
                         <li class="nav-item">
                             <button class="btn btn-danger" onclick="logout()">Logout</button>
