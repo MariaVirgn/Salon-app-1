@@ -56,7 +56,10 @@ class CustController extends Controller
         $customer->email = $email;
         $customer->save();
 
-        return response()->json(['success' => true, 'message' => 'Data Berhasil Diubah']);
+        // if($customer){
+            return response()->json(['success' => true, 'message' => 'Data Berhasil Diubah']);
+       
+
     }
 
     // HALAMAN CUSTOMER

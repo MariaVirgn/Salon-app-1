@@ -38,7 +38,7 @@
                         <div class="col">
                             <input type="text" class="form-control mb-3" id="id_cust" hidden>
                             <input type="text" class="form-control mb-3" placeholder="Nama" id="nama">
-                            <input type="text" class="form-control mb-3" placeholder="Nomor" id="nomor">
+                            <input type="number" class="form-control mb-3" placeholder="Nomor" id="nomor" maxlength="12">
                             <input type="text" class="form-control mb-3" placeholder="Alamat" id="alamat">
                             <input type="email" class="form-control mb-3" placeholder="email" id="email">
                         </div>
@@ -105,31 +105,34 @@
             var nomor = $('#nomor').val();
             var alamat = $('#alamat').val();
             var email = $('#email').val();
-
-            $.ajax({
-                url: "{{ route('updateCustomer') }}",
-                type: "PUT",
-                data: {
-                    id_cust: id_cust,
-                    username: username,
-                    nomor: nomor,
-                    alamat: alamat,
-                    email: email,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    if (response.success) {
-                        alert('Data berhasil diubah');
-                        $('#modalEdit').modal('hide');
-                        read();
-                    } else {
-                        alert('Gagal mengedit data');
+            if(nomor.length >12){
+                alert('Panjang nomor lebih dari 12');
+            }else{
+                $.ajax({
+                    url: "{{ route('updateCustomer') }}",
+                    method: "PUT",
+                    data: {
+                        id_cust: id_cust,
+                        username: username,
+                        nomor: nomor,
+                        alamat: alamat,
+                        email: email,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Data berhasil diubah');
+                            $('#modalEdit').modal('hide');
+                            read();
+                        } else {
+                            alert('Gagal mengedit data');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Terjadi kesalahan: ' + error);
                     }
-                },
-                error: function(xhr, status, error) {
-                    alert('Terjadi kesalahan: ' + error);
-                }
-            });
+                });
+        }
         }
 
 

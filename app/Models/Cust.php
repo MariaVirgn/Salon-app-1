@@ -25,7 +25,7 @@ class Cust extends Model implements Authenticatable
         $data = self::create([
             "username" => $nama,
             "nomor_cust" => $nomor,            
-            "email" => $nomor,            
+            "email" => $email,            
             "alamat" => $alamat,            
             "password"=> bcrypt($password),
         ]);

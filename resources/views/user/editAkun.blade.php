@@ -45,25 +45,30 @@
             var nomor = $('#nomor').val();
             var alamat = $('#alamat').val();
             var email = $('#email').val();
+            if (nomor.length >12) {
+                alert('Panjang Nomor tidak boleh lebih 12');
+                read();
+            } else {
+                $.ajax({
+                    url: "{{ route('updateAccount') }}",
+                    type: "POST",
+                    data: {
+                        username: username,
+                        email: email,
+                        nomor: nomor,
+                        alamat: alamat,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        alert('Data berhasil diubah');
+                        read(); 
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Terjadi kesalahan: ' + error);
+                    }
+                });
+            }
 
-            $.ajax({
-                url: "{{ route('updateAccount') }}",
-                type: "POST",
-                data: {
-                    username: username,
-                    email: email,
-                    nomor: nomor,
-                    alamat: alamat,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    alert('Data berhasil diubah');
-                    read(); 
-                },
-                error: function(xhr, status, error) {
-                    alert('Terjadi kesalahan: ' + error);
-                }
-            });
         }
     </script>
 @endsection()

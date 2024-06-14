@@ -17,7 +17,7 @@ class AuthController extends Controller
     {
         $cradential = $request->validate([
             'username' => 'required',
-            'nomor' => 'required',
+            'nomor' => 'required|size:12',
             'email' => 'required|email',
             'alamat' => 'required',
             'password' => 'required',
